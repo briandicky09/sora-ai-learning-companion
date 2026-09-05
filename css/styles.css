@@ -1,0 +1,155 @@
+/* SORA Design System & Responsive Styles */
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f1fdef;
+    color: #141e16;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .pb-safe {
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .pt-safe {
+    padding-top: max(1rem, env(safe-area-inset-top, 0px));
+  }
+}
+
+/* =========================================================
+ * STRICT RESPONSIVE DEVICE SHELL (Zero-Bug Layout Separation)
+ * ========================================================= */
+@media (max-width: 767px) {
+  #desktop-sidebar {
+    display: none !important;
+  }
+  #mobile-header {
+    display: flex !important;
+  }
+  #mobile-bottom-nav {
+    display: block !important;
+  }
+  main#main-content {
+    padding-bottom: 7rem !important; /* Prevents bottom nav overlap */
+  }
+}
+
+@media (min-width: 768px) {
+  #desktop-sidebar {
+    display: flex !important;
+  }
+  #mobile-header {
+    display: none !important;
+  }
+  #mobile-bottom-nav {
+    display: none !important;
+  }
+  main#main-content {
+    padding-bottom: 2.5rem !important;
+  }
+}
+
+/* Hide navigation on welcome / onboarding view */
+body.view-welcome #desktop-sidebar,
+body.view-welcome #mobile-header,
+body.view-welcome #mobile-bottom-nav {
+  display: none !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c3c8c1;
+  border-radius: 9999px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Active navigation item styling */
+.desktop-nav-item.active {
+  background-color: #cee9da !important;
+  color: #334537 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(74, 93, 78, 0.08);
+}
+
+.mobile-nav-item.active {
+  background-color: #cee9da !important;
+  color: #334537 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(74, 93, 78, 0.12);
+}
+
+/* Aura Background animations */
+@keyframes floatAura {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(8px, -12px) scale(1.04);
+  }
+}
+
+.animate-aura {
+  animation: floatAura 9s ease-in-out infinite;
+}
+
+/* Touch & Click Feedbacks */
+.touch-press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.touch-press:active {
+  transform: scale(0.98);
+}
+
+/* Pulsing Leaf & Mindful Dot */
+@keyframes mindfulPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 99, 88, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(76, 99, 88, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 99, 88, 0);
+  }
+}
+
+.mindful-pulse {
+  animation: mindfulPulse 2.5s infinite;
+}
+
+/* Audio Waveform Bar Animation */
+@keyframes wavePulse {
+  0%, 100% { height: 6px; }
+  50% { height: 22px; }
+}
+
+.playing .wave-bar:nth-child(1) { animation: wavePulse 0.8s ease-in-out infinite; }
+.playing .wave-bar:nth-child(2) { animation: wavePulse 0.6s ease-in-out 0.1s infinite; }
+.playing .wave-bar:nth-child(3) { animation: wavePulse 1.0s ease-in-out 0.2s infinite; }
+.playing .wave-bar:nth-child(4) { animation: wavePulse 0.7s ease-in-out 0.3s infinite; }
+.playing .wave-bar:nth-child(5) { animation: wavePulse 0.9s ease-in-out 0.15s infinite; }
+.playing .wave-bar:nth-child(6) { animation: wavePulse 0.5s ease-in-out 0.25s infinite; }

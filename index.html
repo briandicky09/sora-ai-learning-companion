@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="h-full" lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  
+  <!-- SEO Best Practices -->
+  <title>SORA — AI Learning Companion | Mindful Academic Sanctuary</title>
+  <meta name="description" content="SORA adalah platform AI Learning Companion adaptif bagi mahasiswa yang mengekstrak materi kuliah PDF, memetakan konsep, mengukur kelemahan via kuis, dan memberikan rekomendasi belajar terarah tanpa stres." />
+  <meta name="author" content="Brian Dicky Vanka Andaraneva - UPN Veteran Jawa Timur" />
+  <meta name="theme-color" content="#f1fdef" />
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <!-- PDF.js for Real Client-Side PDF Processing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- Tailwind CSS CDN & Stitch MCP Design Tokens Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary-container": "#4a3f06",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#cee9da",
+            "inverse-surface": "#29332a",
+            "tertiary-container": "#bbab69",
+            "inverse-on-surface": "#e9f4e6",
+            "on-background": "#141e16",
+            "surface-container-low": "#ebf7e9",
+            "on-surface": "#141e16",
+            "on-primary": "#ffffff",
+            "surface-container": "#e6f1e4",
+            "surface-variant": "#dae6d8",
+            "surface": "#f1fdef",
+            "surface-tint": "#506354",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#d7c682",
+            "outline-variant": "#c3c8c1",
+            "surface-container-high": "#e0ebde",
+            "surface-container-highest": "#dae6d8",
+            "on-secondary-container": "#52695e",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed": "#092017",
+            "on-surface-variant": "#434843",
+            "on-secondary-fixed-variant": "#354c41",
+            "primary-container": "#4a5d4e",
+            "background": "#f1fdef",
+            "secondary-container": "#cee9da",
+            "on-primary-fixed-variant": "#394b3d",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#b7ccb9",
+            "primary-fixed": "#d3e8d5",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "outline": "#737872",
+            "secondary-fixed-dim": "#b3ccbf",
+            "secondary": "#4c6358",
+            "on-primary-fixed": "#0e1f13",
+            "primary-fixed-dim": "#b7ccb9",
+            "primary": "#334537",
+            "tertiary": "#6b5e24",
+            "tertiary-fixed": "#f4e29b",
+            "on-tertiary-fixed": "#211b00",
+            "surface-dim": "#d2ddd0",
+            "surface-bright": "#f1fdef"
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "1.5rem",
+            "xl": "2rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-2xs": "0.25rem",
+            "margin-mobile": "1.25rem",
+            "space-4xl": "3.5rem",
+            "space-xs": "0.5rem",
+            "space-3xl": "2.5rem",
+            "space-xl": "1.5rem",
+            "space-sm": "0.75rem",
+            "space-2xl": "2rem",
+            "gutter-mobile": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.25rem"
+          },
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css?v=2" />
+</head>
+
+<body class="bg-surface text-on-surface font-sans antialiased min-h-screen selection:bg-secondary-fixed selection:text-primary">
+
+  <!-- Main Responsive Layout Wrapper: Sidebar on Desktop, Header+BottomNav on Mobile -->
+  <div class="flex flex-col md:flex-row min-h-screen w-full bg-surface">
+
+    <!-- DESKTOP SIDEBAR (Strictly for Desktop >= 768px via styles.css) -->
+    <aside id="desktop-sidebar" class="hidden md:flex flex-col w-64 lg:w-72 h-screen sticky top-0 bg-surface-container-lowest border-r border-secondary/15 p-5 z-30 shrink-0 select-none shadow-[2px_0_16px_rgba(74,93,78,0.03)]">
+      <!-- Logo & Tagline -->
+      <a href="#home" class="flex items-center gap-3 px-2 py-2 mb-6 group cursor-pointer">
+        <svg class="h-9 w-auto shrink-0" viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" fill="#E8EFE8" />
+          <path d="M24 12C24 18.6274 18.6274 24 12 24C18.6274 24 24 29.3726 24 36C24 29.3726 29.3726 24 36 24C29.3726 24 24 18.6274 24 12Z" fill="#4A5D4E" />
+          <circle cx="28" cy="18" r="3" fill="#DCEBFA" />
+          <text x="52" y="30" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="700" letter-spacing="2.5" fill="#2D372E">SORA</text>
+        </svg>
+      </a>
+
+      <!-- User Mini Profile -->
+      <div class="flex items-center gap-3 p-3 mb-6 rounded-2xl bg-surface-container-low border border-secondary/15">
+        <img alt="Brian" class="w-10 h-10 rounded-full object-cover ring-2 ring-secondary/30 shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLWFH3DyRW1WRdbLUX87pxylybY596ritjULIJE1U5sInYMLs4oPZERnWuPtsfkuBJkEAphrIuR3tuWiUQ5mwL4Wa6N-bimL9xpkVxHL9610miBukEDyKB4cNszBDH3bVijslL6Ch3lPEzbcdN7KV8FXe4n1j9iXwSV3AGzkumDSep2-1lBeNHFOSE8VYVzRqtsrBGIzEP7sabuPWPS3L5VrwR25ej9LyQRWyIcxCu7KjzZuC9gxUhw" />
+        <div class="flex flex-col min-w-0">
+          <span class="font-semibold text-primary text-sm truncate" id="sidebar-user-name">Brian Dicky</span>
+          <span class="text-xs text-on-surface-variant truncate">UPN "Veteran" Jatim</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex flex-col gap-1.5 flex-1" id="desktop-nav-links">
+        <a href="#home" data-path="home" class="desktop-nav-item flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all text-on-surface-variant hover:bg-surface-container hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">home</span>
+          <span>Beranda (Home)</span>
+        </a>
+        <a href="#upload" data-path="upload" class="desktop-nav-item flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all text-on-surface-variant hover:bg-surface-container hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">menu_book</span>
+          <span>Materi Kuliah (Upload)</span>
+        </a>
+        <a href="#ai-tutor" data-path="ai-tutor" class="desktop-nav-item flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all text-on-surface-variant hover:bg-surface-container hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+          <span>AI Tutor Terarah</span>
+        </a>
+        <a href="#topic-map" data-path="topic-map" class="desktop-nav-item flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all text-on-surface-variant hover:bg-surface-container hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">account_tree</span>
+          <span>Peta Konsep (Topic Map)</span>
+        </a>
+        <a href="#quiz" data-path="quiz" class="desktop-nav-item flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all text-on-surface-variant hover:bg-surface-container hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">quiz</span>
+          <span>Kuis & Diagnostik</span>
+        </a>
+        <a href="#progress" data-path="progress" class="desktop-nav-item flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all text-on-surface-variant hover:bg-surface-container hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+          <span>Knowledge Profile</span>
+        </a>
+        <a href="#recommendations" data-path="recommendations" class="desktop-nav-item flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all text-on-surface-variant hover:bg-surface-container hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">psychology_alt</span>
+          <span>Rekomendasi Belajar</span>
+        </a>
+        <a href="#exam" data-path="exam" class="desktop-nav-item flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all text-on-surface-variant hover:bg-surface-container hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">calendar_today</span>
+          <span>Mode Ujian (Exam Mode)</span>
+        </a>
+      </nav>
+
+      <!-- Bottom Zen Indicator -->
+      <div class="p-3 rounded-2xl bg-secondary-container/50 flex items-center gap-2.5 text-xs text-primary mt-auto">
+        <span class="material-symbols-outlined text-secondary text-[18px]">self_improvement</span>
+        <span class="font-medium">Mindful Study Sanctuary</span>
+      </div>
+    </aside>
+
+    <!-- MAIN APP CONTENT AREA (Responsive) -->
+    <div class="flex-1 flex flex-col min-w-0 min-h-screen relative">
+      
+      <!-- MOBILE TOP HEADER (Governed by styles.css and Tailwind) -->
+      <header id="mobile-header" class="md:hidden sticky top-0 inset-x-0 z-30 bg-surface/90 backdrop-blur-xl border-b border-secondary/15 px-4 h-14 flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]">
+        <a href="#home" class="flex items-center gap-2 group cursor-pointer">
+          <svg class="h-7 w-auto shrink-0" viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="18" fill="#E8EFE8" />
+            <path d="M24 12C24 18.6274 18.6274 24 12 24C18.6274 24 24 29.3726 24 36C24 29.3726 29.3726 24 36 24C29.3726 24 24 18.6274 24 12Z" fill="#4A5D4E" />
+            <circle cx="28" cy="18" r="3" fill="#DCEBFA" />
+            <text x="52" y="30" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="700" letter-spacing="2.5" fill="#2D372E">SORA</text>
+          </svg>
+        </a>
+        <div class="flex items-center gap-1">
+          <button onclick="alert('Notifikasi: SORA telah memperbarui rekomendasi belajarmu!')" class="w-9 h-9 flex items-center justify-center rounded-full text-secondary hover:bg-secondary-container/40 cursor-pointer">
+            <span class="material-symbols-outlined text-[20px]">notifications</span>
+          </button>
+          <a href="#progress" class="w-8 h-8 rounded-full overflow-hidden ring-1 ring-secondary/30 ml-1">
+            <img alt="Profil" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLWFH3DyRW1WRdbLUX87pxylybY596ritjULIJE1U5sInYMLs4oPZERnWuPtsfkuBJkEAphrIuR3tuWiUQ5mwL4Wa6N-bimL9xpkVxHL9610miBukEDyKB4cNszBDH3bVijslL6Ch3lPEzbcdN7KV8FXe4n1j9iXwSV3AGzkumDSep2-1lBeNHFOSE8VYVzRqtsrBGIzEP7sabuPWPS3L5VrwR25ej9LyQRWyIcxCu7KjzZuC9gxUhw" />
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Dynamic Content (Padding ensures nothing is cut off) -->
+      <main id="main-content" class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-36 md:pb-12">
+        <!-- Injected via app.js -->
+      </main>
+
+      <!-- MOBILE BOTTOM NAVIGATION (Governed by styles.css and Tailwind) -->
+      <nav id="mobile-bottom-nav" class="md:hidden fixed bottom-0 inset-x-0 z-40 pb-safe pointer-events-none">
+        <div class="max-w-md mx-auto px-4 pb-3">
+          <div class="pointer-events-auto bg-surface/95 backdrop-blur-xl rounded-full px-2 py-1.5 flex items-center justify-around shadow-[0_12px_36px_rgba(74,93,78,0.15)] border border-secondary/20">
+            <a href="#home" data-path="home" class="mobile-nav-item flex flex-col items-center justify-center min-w-[48px] py-1 rounded-full text-on-surface-variant transition-all">
+              <span class="material-symbols-outlined text-[20px]">home</span>
+              <span class="text-[10px] font-medium mt-0.5">Home</span>
+            </a>
+            <a href="#upload" data-path="upload" class="mobile-nav-item flex flex-col items-center justify-center min-w-[48px] py-1 rounded-full text-on-surface-variant transition-all">
+              <span class="material-symbols-outlined text-[20px]">menu_book</span>
+              <span class="text-[10px] font-medium mt-0.5">Materi</span>
+            </a>
+            <a href="#ai-tutor" data-path="ai-tutor" class="mobile-nav-item flex flex-col items-center justify-center min-w-[48px] py-1 rounded-full text-on-surface-variant transition-all">
+              <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+              <span class="text-[10px] font-medium mt-0.5">Tutor</span>
+            </a>
+            <a href="#topic-map" data-path="topic-map" class="mobile-nav-item flex flex-col items-center justify-center min-w-[48px] py-1 rounded-full text-on-surface-variant transition-all">
+              <span class="material-symbols-outlined text-[20px]">account_tree</span>
+              <span class="text-[10px] font-medium mt-0.5">Topik</span>
+            </a>
+            <a href="#quiz" data-path="quiz" class="mobile-nav-item flex flex-col items-center justify-center min-w-[48px] py-1 rounded-full text-on-surface-variant transition-all">
+              <span class="material-symbols-outlined text-[20px]">quiz</span>
+              <span class="text-[10px] font-medium mt-0.5">Kuis</span>
+            </a>
+            <a href="#progress" data-path="progress" class="mobile-nav-item flex flex-col items-center justify-center min-w-[48px] py-1 rounded-full text-on-surface-variant transition-all">
+              <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+              <span class="text-[10px] font-medium mt-0.5">Profil</span>
+            </a>
+            <a href="#exam" data-path="exam" class="mobile-nav-item flex flex-col items-center justify-center min-w-[48px] py-1 rounded-full text-on-surface-variant transition-all">
+              <span class="material-symbols-outlined text-[20px]">calendar_today</span>
+              <span class="text-[10px] font-medium mt-0.5">Ujian</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- Core Application Scripts -->
+  <script src="js/demo_data.js?v=2"></script>
+  <script src="js/pdf_processor.js?v=2"></script>
+  <script src="js/ai_tutor.js?v=2"></script>
+  <script src="js/quiz_engine.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
+</body>
+</html>
