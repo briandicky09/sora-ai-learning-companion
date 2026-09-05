@@ -258,6 +258,23 @@ class SoraApp {
     if (logoutBtn) {
       logoutBtn.addEventListener('click', () => this.logout());
     }
+
+    document.addEventListener('pointermove', (e) => {
+      const cards = document.querySelectorAll('.glow-card');
+      if (cards.length > 0) {
+        const x = e.clientX;
+        const y = e.clientY;
+        const xp = (x / window.innerWidth).toFixed(2);
+        const yp = (y / window.innerHeight).toFixed(2);
+        
+        cards.forEach(card => {
+          card.style.setProperty('--x', x.toFixed(2));
+          card.style.setProperty('--xp', xp);
+          card.style.setProperty('--y', y.toFixed(2));
+          card.style.setProperty('--yp', yp);
+        });
+      }
+    });
   }
 
   navigateTo(viewName) {
@@ -600,71 +617,83 @@ class SoraApp {
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="bento-section">
-            <div class="notion-card p-6 sm:p-7 flex flex-col justify-between">
-              <div>
-                <div class="w-9 h-9 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-[#191919] mb-4">
-                  <span class="material-symbols-outlined text-[20px]">description</span>
+            <div class="notion-card glow-card p-6 sm:p-7 flex flex-col justify-between overflow-hidden" data-glow>
+              <div data-glow></div>
+              <div class="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <div class="w-9 h-9 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-[#191919] mb-4">
+                    <span class="material-symbols-outlined text-[20px]">description</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-[#191919] tracking-tight mb-2">
+                    Ekstraksi PDF Kuliah Otomatis
+                  </h3>
+                  <p class="text-xs text-[#787774] leading-relaxed mb-4">
+                    Unggah slide kuliah dosen berformat PDF. SORA membaca teks, menyusun daftar bab, dan mengekstrak konsep kunci secara langsung di browser tanpa upload ke server eksternal.
+                  </p>
                 </div>
-                <h3 class="text-lg font-bold text-[#191919] tracking-tight mb-2">
-                  Ekstraksi PDF Kuliah Otomatis
-                </h3>
-                <p class="text-xs text-[#787774] leading-relaxed mb-4">
-                  Unggah slide kuliah dosen berformat PDF. SORA membaca teks, menyusun daftar bab, dan mengekstrak konsep kunci secara langsung di browser tanpa upload ke server eksternal.
-                </p>
-              </div>
-              <div class="p-3 bg-[#FBFBFA] border border-[#E9E9E7] rounded-lg text-xs font-mono text-[#55534E]">
-                Ekstraksi teks instan langsung pada peramban
+                <div class="p-3 bg-white/60 backdrop-blur-sm border border-[#E9E9E7] rounded-lg text-xs font-mono text-[#55534E]">
+                  Ekstraksi teks instan langsung pada peramban
+                </div>
               </div>
             </div>
 
-            <div class="notion-card p-6 sm:p-7 flex flex-col justify-between">
-              <div>
-                <div class="w-9 h-9 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-[#191919] mb-4">
-                  <span class="material-symbols-outlined text-[20px]">smart_toy</span>
+            <div class="notion-card glow-card p-6 sm:p-7 flex flex-col justify-between overflow-hidden" data-glow>
+              <div data-glow></div>
+              <div class="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <div class="w-9 h-9 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-[#191919] mb-4">
+                    <span class="material-symbols-outlined text-[20px]">smart_toy</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-[#191919] tracking-tight mb-2">
+                    AI Tutor Sokratik Terarah
+                  </h3>
+                  <p class="text-xs text-[#787774] leading-relaxed mb-4">
+                    Bukan bot pemberi jawaban langsung. AI Tutor memandu dengan pertanyaan bertahap, analogi sederhana, dan sitasi langsung ke halaman slide materi kuliah.
+                  </p>
                 </div>
-                <h3 class="text-lg font-bold text-[#191919] tracking-tight mb-2">
-                  AI Tutor Sokratik Terarah
-                </h3>
-                <p class="text-xs text-[#787774] leading-relaxed mb-4">
-                  Bukan bot pemberi jawaban langsung. AI Tutor memandu dengan pertanyaan bertahap, analogi sederhana, dan sitasi langsung ke halaman slide materi kuliah.
-                </p>
-              </div>
-              <div class="p-3 bg-[#FBFBFA] border border-[#E9E9E7] rounded-lg text-xs font-mono text-[#55534E]">
-                Metode sokratik dengan sitasi halaman materi
+                <div class="p-3 bg-white/60 backdrop-blur-sm border border-[#E9E9E7] rounded-lg text-xs font-mono text-[#55534E]">
+                  Metode sokratik dengan sitasi halaman materi
+                </div>
               </div>
             </div>
 
-            <div class="notion-card p-6 sm:p-7 flex flex-col justify-between">
-              <div>
-                <div class="w-9 h-9 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-[#191919] mb-4">
-                  <span class="material-symbols-outlined text-[20px]">account_tree</span>
+            <div class="notion-card glow-card p-6 sm:p-7 flex flex-col justify-between overflow-hidden" data-glow>
+              <div data-glow></div>
+              <div class="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <div class="w-9 h-9 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-[#191919] mb-4">
+                    <span class="material-symbols-outlined text-[20px]">account_tree</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-[#191919] tracking-tight mb-2">
+                    Peta Konsep dan Knowledge Profile
+                  </h3>
+                  <p class="text-xs text-[#787774] leading-relaxed mb-4">
+                    Visualisasi pohon pengetahuan dinamis. Status penguasaan dipantau secara objektif berdasarkan hasil latihan diagnostik berkala.
+                  </p>
                 </div>
-                <h3 class="text-lg font-bold text-[#191919] tracking-tight mb-2">
-                  Peta Konsep dan Knowledge Profile
-                </h3>
-                <p class="text-xs text-[#787774] leading-relaxed mb-4">
-                  Visualisasi pohon pengetahuan dinamis. Status penguasaan dipantau secara objektif berdasarkan hasil latihan diagnostik berkala.
-                </p>
-              </div>
-              <div class="p-3 bg-[#FBFBFA] border border-[#E9E9E7] rounded-lg text-xs font-mono text-[#55534E]">
-                Grafik pohon konsep mendeteksi titik rawan
+                <div class="p-3 bg-white/60 backdrop-blur-sm border border-[#E9E9E7] rounded-lg text-xs font-mono text-[#55534E]">
+                  Grafik pohon konsep mendeteksi titik rawan
+                </div>
               </div>
             </div>
 
-            <div class="notion-card p-6 sm:p-7 flex flex-col justify-between" id="exam-section">
-              <div>
-                <div class="w-9 h-9 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-[#191919] mb-4">
-                  <span class="material-symbols-outlined text-[20px]">schedule</span>
+            <div class="notion-card glow-card p-6 sm:p-7 flex flex-col justify-between overflow-hidden" id="exam-section" data-glow>
+              <div data-glow></div>
+              <div class="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <div class="w-9 h-9 rounded-lg bg-[#F7F6F3] border border-[#E9E9E7] flex items-center justify-center text-[#191919] mb-4">
+                    <span class="material-symbols-outlined text-[20px]">schedule</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-[#191919] tracking-tight mb-2">
+                    Mode Ujian dan Kalibrasi Kesiapan
+                  </h3>
+                  <p class="text-xs text-[#787774] leading-relaxed mb-4">
+                    Hitung mundur jadwal ujian, simulasi latihan berbatas waktu, dan daftar prioritas konsep yang paling mendesak dipelajari sebelum ujian dimulai.
+                  </p>
                 </div>
-                <h3 class="text-lg font-bold text-[#191919] tracking-tight mb-2">
-                  Mode Ujian dan Kalibrasi Kesiapan
-                </h3>
-                <p class="text-xs text-[#787774] leading-relaxed mb-4">
-                  Hitung mundur jadwal ujian, simulasi latihan berbatas waktu, dan daftar prioritas konsep yang paling mendesak dipelajari sebelum ujian dimulai.
-                </p>
-              </div>
-              <div class="p-3 bg-[#FBFBFA] border border-[#E9E9E7] rounded-lg text-xs font-mono text-[#55534E]">
-                Persiapan terarah tanpa kepanikan mendekati ujian
+                <div class="p-3 bg-white/60 backdrop-blur-sm border border-[#E9E9E7] rounded-lg text-xs font-mono text-[#55534E]">
+                  Persiapan terarah tanpa kepanikan mendekati ujian
+                </div>
               </div>
             </div>
           </div>
