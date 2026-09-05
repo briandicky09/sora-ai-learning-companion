@@ -153,3 +153,42 @@ body.view-welcome #mobile-bottom-nav {
 .playing .wave-bar:nth-child(4) { animation: wavePulse 0.7s ease-in-out 0.3s infinite; }
 .playing .wave-bar:nth-child(5) { animation: wavePulse 0.9s ease-in-out 0.15s infinite; }
 .playing .wave-bar:nth-child(6) { animation: wavePulse 0.5s ease-in-out 0.25s infinite; }
+
+/* Progress Ring Animation */
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.8s ease-in-out;
+}
+
+/* Sanctuary Card Styling */
+.card-sanctuary {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(74, 93, 78, 0.12);
+  box-shadow: 0 4px 20px rgba(51, 69, 55, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-sanctuary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(51, 69, 55, 0.08);
+}
+
+/* Mood Button Active States */
+.mood-btn {
+  transition: all 0.2s ease;
+}
+.mood-btn.active {
+  background-color: #cee9da !important;
+  color: #334537 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(74, 93, 78, 0.12);
+  border-color: #4a5d4e !important;
+}
+
+/* Mental Model Bento Box */
+.mental-model-bento {
+  background: rgba(241, 253, 239, 0.75);
+  border: 1px solid rgba(74, 93, 78, 0.15);
+  border-radius: 1rem;
+}
+

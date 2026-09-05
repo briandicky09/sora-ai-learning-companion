@@ -289,13 +289,13 @@ class SoraApp {
           <!-- Mood Selector Buttons -->
           <div class="flex items-center gap-2 bg-surface-container-low p-1.5 rounded-2xl border border-secondary/15">
             <span class="text-xs text-on-surface-variant font-medium px-2 hidden sm:inline">Kondisi:</span>
-            <button class="mood-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer ${user.currentMood === 'calm' ? 'bg-secondary-container text-primary shadow-sm' : 'text-on-surface-variant hover:bg-surface-container'}" data-mood="calm">
+            <button class="mood-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${user.currentMood === 'calm' ? 'active' : 'text-on-surface-variant hover:bg-surface-container'}" data-mood="calm">
               <span>🌿</span><span>Tenang</span>
             </button>
-            <button class="mood-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer ${user.currentMood === 'focused' ? 'bg-secondary-container text-primary shadow-sm' : 'text-on-surface-variant hover:bg-surface-container'}" data-mood="focused">
+            <button class="mood-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${user.currentMood === 'focused' ? 'active' : 'text-on-surface-variant hover:bg-surface-container'}" data-mood="focused">
               <span>💡</span><span>Fokus</span>
             </button>
-            <button class="mood-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer ${user.currentMood === 'overwhelmed' ? 'bg-secondary-container text-primary shadow-sm' : 'text-on-surface-variant hover:bg-surface-container'}" data-mood="overwhelmed">
+            <button class="mood-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${user.currentMood === 'overwhelmed' ? 'active' : 'text-on-surface-variant hover:bg-surface-container'}" data-mood="overwhelmed">
               <span>☁️</span><span>Lelah</span>
             </button>
           </div>
@@ -307,28 +307,54 @@ class SoraApp {
           <!-- LEFT COLUMN (Span 7 on lg) -->
           <div class="lg:col-span-7 flex flex-col gap-6">
             
-            <!-- Hero Card: Active Course -->
+            <!-- Hero Card: Active Course with Fine-line Organic Botanical BST Art SVG -->
             <div class="relative bg-surface-container rounded-3xl p-6 sm:p-8 shadow-sm border border-secondary/15 overflow-hidden flex flex-col justify-between">
-              <div class="flex items-center justify-between mb-4">
-                <span class="px-3 py-1 bg-surface-container-lowest/80 rounded-full text-secondary font-semibold text-xs uppercase tracking-wider">
+              <!-- Atmospheric Background Auras -->
+              <div class="absolute -top-10 -right-10 w-44 h-44 bg-tertiary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+              <div class="absolute -bottom-10 right-8 w-36 h-36 bg-secondary-fixed/40 rounded-full blur-2xl pointer-events-none"></div>
+
+              <div class="flex items-center justify-between mb-4 relative z-10">
+                <span class="px-3 py-1 bg-surface-container-lowest/80 backdrop-blur-md rounded-full text-secondary font-semibold text-xs uppercase tracking-wider">
                   ${activeMat.course}
                 </span>
-                <span class="flex items-center gap-1 px-3 py-1 bg-surface-container-lowest/90 rounded-full text-primary font-semibold text-xs">
+                <span class="flex items-center gap-1 px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-md rounded-full text-primary font-semibold text-xs shadow-sm">
                   <span class="material-symbols-outlined text-[15px] text-tertiary">check_circle</span>
                   <span>74% Selesai</span>
                 </span>
               </div>
 
-              <div class="mb-6">
-                <h2 class="font-headline-md text-headline-md text-primary font-bold tracking-tight mb-2">
-                  ${activeMat.title}
-                </h2>
-                <p class="text-sm text-on-surface-variant leading-relaxed">
-                  Memahami cara kerja virtual memory, penanganan page fault, dan pencegahan thrashing secara intuitif.
-                </p>
+              <div class="flex items-start justify-between gap-4 mb-6 relative z-10">
+                <div class="flex-1">
+                  <h2 class="font-headline-md text-headline-md text-primary font-bold tracking-tight mb-2">
+                    ${activeMat.title}
+                  </h2>
+                  <p class="text-sm text-on-surface-variant leading-relaxed">
+                    Memahami cara kerja virtual memory, penanganan page fault, dan pencegahan thrashing secara intuitif.
+                  </p>
+                </div>
+
+                <!-- Minimalist Organic Fine-Line Branch / BST Art SVG (from Google Stitch) -->
+                <div class="hidden sm:flex w-20 h-20 shrink-0 items-center justify-center relative opacity-85">
+                  <svg class="w-20 h-20 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 100 100">
+                    <circle class="fill-surface-container-lowest stroke-primary" cx="50" cy="22" r="6"></circle>
+                    <path d="M50 28 L50 42"></path>
+                    <path d="M50 42 C40 42 26 50 26 64"></path>
+                    <circle class="fill-surface-container-lowest stroke-primary" cx="26" cy="64" r="5"></circle>
+                    <path d="M26 69 C26 76 18 82 18 86"></path>
+                    <circle class="fill-tertiary-fixed stroke-tertiary" cx="18" cy="86" r="3.5"></circle>
+                    <path d="M26 69 C26 76 34 82 34 86"></path>
+                    <circle class="fill-secondary-container stroke-secondary" cx="34" cy="86" r="3.5"></circle>
+                    <path d="M50 42 C60 42 74 50 74 64"></path>
+                    <circle class="fill-surface-container-lowest stroke-primary" cx="74" cy="64" r="5"></circle>
+                    <path d="M74 69 C74 76 66 82 66 86"></path>
+                    <circle class="fill-secondary-container stroke-secondary" cx="66" cy="86" r="3.5"></circle>
+                    <path d="M74 69 C74 76 82 82 82 86"></path>
+                    <circle class="fill-tertiary-fixed stroke-tertiary" cx="82" cy="86" r="3.5"></circle>
+                  </svg>
+                </div>
               </div>
 
-              <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <div class="flex flex-col sm:flex-row gap-3 pt-2 relative z-10">
                 <button onclick="soraApp.navigateTo('ai-tutor')" class="flex-1 h-12 bg-primary hover:bg-primary-container text-on-primary rounded-full flex items-center justify-center gap-2 font-semibold text-sm shadow-md transition-all active:scale-95 cursor-pointer">
                   <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
                   <span>Diskusi di AI Tutor</span>
@@ -371,10 +397,15 @@ class SoraApp {
           <!-- RIGHT COLUMN (Span 5 on lg) -->
           <div class="lg:col-span-5 flex flex-col gap-6">
             
-            <!-- Progress Target Ring Card -->
-            <div class="bg-surface-container-low rounded-3xl p-6 border border-secondary/15 flex items-center justify-between gap-4">
-              <div class="flex flex-col gap-1">
-                <span class="text-xs font-bold text-secondary uppercase tracking-wider">Target Belajar Harian</span>
+            <!-- Progress Target Ring Card (with Aura & Circular SVG Ring) -->
+            <div class="relative bg-surface-container-low rounded-3xl p-6 border border-secondary/15 flex items-center justify-between gap-4 overflow-hidden shadow-sm">
+              <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-secondary-fixed/40 rounded-full blur-2xl pointer-events-none"></div>
+
+              <div class="flex flex-col gap-1 relative z-10">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                  <span class="text-xs font-bold text-secondary uppercase tracking-wider">Target Belajar Harian</span>
+                </div>
                 <span class="font-headline-sm text-headline-sm text-primary font-bold">
                   ${user.studyMinutesToday} <span class="text-sm font-normal text-on-surface-variant">/ ${user.studyMinutesTarget} menit</span>
                 </span>
@@ -383,10 +414,10 @@ class SoraApp {
                 </p>
               </div>
 
-              <div class="relative w-18 h-18 shrink-0 flex items-center justify-center">
-                <svg class="w-18 h-18 -rotate-90" viewBox="0 0 48 48">
-                  <circle class="stroke-surface-container-highest" cx="24" cy="24" fill="none" r="20" stroke-width="4"></circle>
-                  <circle class="stroke-primary" cx="24" cy="24" fill="none" r="20" stroke-dasharray="125.6" stroke-dashoffset="${strokeOffset}" stroke-linecap="round" stroke-width="4"></circle>
+              <div class="relative w-20 h-20 shrink-0 flex items-center justify-center z-10">
+                <svg class="w-20 h-20 -rotate-90" viewBox="0 0 48 48">
+                  <circle class="stroke-surface-container-highest" cx="24" cy="24" fill="none" r="20" stroke-width="4.5"></circle>
+                  <circle class="stroke-primary progress-ring-circle" cx="24" cy="24" fill="none" r="20" stroke-dasharray="125.6" stroke-dashoffset="${strokeOffset}" stroke-linecap="round" stroke-width="4.5"></circle>
                 </svg>
                 <span class="absolute font-bold text-xs text-primary">${targetPercent}%</span>
               </div>
@@ -716,6 +747,34 @@ class SoraApp {
                 Akibatnya, sistem operasi terlalu sibuk menukar halaman (swap in/swap out) ke disk daripada menjalankan kode program. Karena akses disk jutaan kali lebih lambat dari RAM, CPU hanya menganggur menunggu antrean transfer I/O sehingga utilisasi CPU jatuh mendekati 0%.
               </p>
 
+              <!-- Visual Mental Model Bento Inset (from Google Stitch 3__AI_Tutor design) -->
+              <div class="mental-model-bento p-3.5 sm:p-4 flex flex-col gap-2.5">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-xs text-primary flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-tertiary">memory</span>
+                    Model Intuisi: Siklus Beban Berlebih Thrashing
+                  </span>
+                  <span class="text-[10px] font-bold text-tertiary bg-tertiary-fixed px-2 py-0.5 rounded-full">Visual Note</span>
+                </div>
+                <!-- Diagram Flow -->
+                <div class="p-3 bg-surface-container-lowest/90 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-2 text-xs border border-secondary/15">
+                  <div class="flex flex-col items-center gap-0.5 flex-1 text-center p-2 rounded-lg bg-surface-container-low/60 w-full sm:w-auto">
+                    <span class="font-bold text-primary">RAM Fisik Penuh</span>
+                    <span class="text-[10px] text-on-surface-variant">Working set > frame tersedia</span>
+                  </div>
+                  <span class="material-symbols-outlined text-tertiary text-[18px] rotate-90 sm:rotate-0">sync_alt</span>
+                  <div class="flex flex-col items-center gap-0.5 flex-1 text-center p-2 rounded-lg bg-error-container/30 border border-error/20 w-full sm:w-auto">
+                    <span class="font-bold text-error">Thrashing Kritis</span>
+                    <span class="text-[10px] text-on-surface-variant">Swap terus-menerus ke disk</span>
+                  </div>
+                  <span class="material-symbols-outlined text-primary text-[18px] rotate-90 sm:rotate-0">arrow_forward</span>
+                  <div class="flex flex-col items-center gap-0.5 flex-1 text-center p-2 rounded-lg bg-surface-container-low/60 w-full sm:w-auto">
+                    <span class="font-bold text-primary">Utilisasi CPU ~0%</span>
+                    <span class="text-[10px] text-on-surface-variant">CPU menganggur antre I/O</span>
+                  </div>
+                </div>
+              </div>
+
               <div class="p-3 rounded-xl bg-surface-container-lowest border border-secondary/15 flex flex-col gap-1">
                 <span class="font-bold text-xs text-primary flex items-center gap-1">
                   <span class="material-symbols-outlined text-[16px]">lightbulb</span>
@@ -886,6 +945,9 @@ class SoraApp {
                 </div>
 
                 <div>
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <span class="text-[10px] text-secondary bg-secondary-container/60 px-2 py-0.5 rounded-md font-semibold">Tier ${node.tier === 0 ? 'Pondasi' : node.tier === 1 ? 'Inti' : 'Lanjutan'}</span>
+                  </div>
                   <h3 class="font-bold text-base text-primary">${node.label}</h3>
                   <p class="text-xs text-on-surface-variant mt-1 line-clamp-2 leading-relaxed">${node.desc}</p>
                 </div>
@@ -1446,7 +1508,7 @@ class SoraApp {
                   <div class="flex-1">
                     <div class="flex justify-between font-bold text-primary">
                       <span>40% Penguatan Konsep Lemah</span>
-                      <span>~14 menit</span>
+                      <span id="exam-min-weak">~14 menit</span>
                     </div>
                     <span class="text-on-surface-variant">Fokus pada Virtual Memory Thrashing & TLB Paging</span>
                   </div>
@@ -1457,7 +1519,7 @@ class SoraApp {
                   <div class="flex-1">
                     <div class="flex justify-between font-bold text-primary">
                       <span>35% Retrieval Practice (Kuis Berkala)</span>
-                      <span>~12 menit</span>
+                      <span id="exam-min-quiz">~12 menit</span>
                     </div>
                     <span class="text-on-surface-variant">Active recall latihan soal tanpa melihat catatan</span>
                   </div>
@@ -1468,7 +1530,7 @@ class SoraApp {
                   <div class="flex-1">
                     <div class="flex justify-between font-bold text-primary">
                       <span>25% Konsolidasi & Topic Map</span>
-                      <span>~9 menit</span>
+                      <span id="exam-min-map">~9 menit</span>
                     </div>
                     <span class="text-on-surface-variant">Menghubungkan relasi konsep secara holistik</span>
                   </div>
@@ -1489,9 +1551,17 @@ class SoraApp {
   bindExamEvents() {
     const slider = document.getElementById('pace-slider');
     const display = document.getElementById('pace-display');
+    const minWeak = document.getElementById('exam-min-weak');
+    const minQuiz = document.getElementById('exam-min-quiz');
+    const minMap = document.getElementById('exam-min-map');
+
     if (slider && display) {
       slider.addEventListener('input', (e) => {
-        display.textContent = `${e.target.value} menit / hari`;
+        const val = parseInt(e.target.value, 10);
+        display.textContent = `${val} menit / hari`;
+        if (minWeak) minWeak.textContent = `~${Math.round(val * 0.40)} menit`;
+        if (minQuiz) minQuiz.textContent = `~${Math.round(val * 0.35)} menit`;
+        if (minMap) minMap.textContent = `~${Math.round(val * 0.25)} menit`;
       });
     }
   }
