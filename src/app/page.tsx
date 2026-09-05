@@ -3,310 +3,284 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Bot, Target, BookOpen } from "lucide-react";
+import { ArrowRight, Bot, Target, BookOpen, UploadCloud, Brain, PlayCircle, BarChart3, ChevronRight } from "lucide-react";
+import { PulseFitHero } from "@/components/ui/pulse-fit-hero";
+import { useRouter } from "next/navigation";
 
 const features = [
-  "Belajar Tanpa Distraksi",
-  "Peta Konsep Terarah",
-  "Tutor AI Sokratik",
-  "Kuis Diagnostik Cerdas",
-  "Rekomendasi Akurat",
-  "Mode Ujian Fokus",
-];
-
-const featureCards = [
   {
     icon: Bot,
-    title: "AI Tutor",
-    desc: "Bimbingan personal menggunakan metode sokratik untuk pemahaman mendalam.",
+    title: "AI Tutor Sokratik",
+    desc: "Bimbingan personal layaknya dosen pembimbing. Tidak sekadar memberi jawaban, tetapi memancing pemahaman mendalam melalui pertanyaan terarah.",
   },
   {
     icon: Target,
-    title: "Diagnostik",
-    desc: "Pemetaan konsep secara otomatis untuk menemukan kelemahan belajar Anda.",
+    title: "Kuis Diagnostik Cerdas",
+    desc: "Sistem otomatis membuat soal dari materi PDF yang diunggah untuk menguji dan memetakan kelemahan konsep Anda.",
   },
   {
-    icon: BookOpen,
-    title: "Materi",
-    desc: "Ekstraksi materi kuliah PDF dengan cepat dan aman tanpa gangguan.",
+    icon: BarChart3,
+    title: "Knowledge Profile",
+    desc: "Lacak penguasaan setiap topik secara presisi. SORA memberi tahu persis bagian mana yang perlu Anda perbaiki sebelum ujian.",
+  },
+];
+
+const steps = [
+  {
+    title: "Unggah Materi",
+    desc: "Masukkan PDF kuliahmu (maks 50MB). SORA akan mengekstrak struktur dan topik inti secara otomatis dalam hitungan detik.",
+    icon: UploadCloud,
+  },
+  {
+    title: "Evaluasi Diri",
+    desc: "Kerjakan kuis diagnostik yang di-generate oleh AI untuk mengetahui sejauh mana pemahaman awalmu terhadap materi.",
+    icon: Brain,
+  },
+  {
+    title: "Tanya AI Tutor",
+    desc: "Gunakan AI Tutor untuk membahas konsep yang menjadi kelemahanmu berdasarkan hasil kuis, langsung merujuk pada materi.",
+    icon: Bot,
   },
 ];
 
 export default function LandingPage() {
+  const router = useRouter();
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        width: "100%",
-        background: "#FFFFFF",
-        color: "#2F3437",
-        overflowX: "hidden",
-      }}
-    >
-      {/* Nav */}
-      <header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "16px 24px",
-          maxWidth: 1200,
-          margin: "0 auto",
-          width: "100%",
+    <div className="min-h-screen bg-white text-[#37352F] font-sans overflow-x-hidden selection:bg-[#2383E2]/20 selection:text-[#2383E2]">
+      
+      {/* New Hero Section */}
+      <PulseFitHero
+        logo={
+          <>
+            <div className="w-8 h-8 rounded-[3px] bg-[#37352F] text-white font-bold text-sm flex items-center justify-center shadow-sm">
+              S
+            </div>
+            <span className="font-bold text-lg tracking-tight text-black">SORA</span>
+          </>
+        }
+        navigation={[
+          { label: "Fitur" },
+          { label: "Cara Kerja" },
+        ]}
+        ctaButton={{
+          label: "Masuk Dashboard",
+          onClick: () => router.push("/dashboard"),
         }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: 8,
-              background: "#191919",
-              color: "#FFFFFF",
-              fontWeight: 700,
-              fontSize: 14,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            S
-          </div>
-          <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: "-0.02em", color: "#191919" }}>
-            SORA
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <Link
-            href="/dashboard"
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: "#787774",
-              textDecoration: "none",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#191919")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#787774")}
-          >
-            Masuk
-          </Link>
-          <Link
-            href="/dashboard"
-            style={{
-              padding: "8px 16px",
-              borderRadius: 8,
-              background: "#191919",
-              color: "#FFFFFF",
-              fontSize: 14,
-              fontWeight: 500,
-              textDecoration: "none",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#333333")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#191919")}
-          >
-            Mulai Belajar
-          </Link>
-        </div>
-      </header>
-
-      {/* Hero */}
-      <main
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-          padding: "80px 24px 64px",
-          maxWidth: 1000,
-          margin: "0 auto",
-          width: "100%",
+        title={
+          <>
+            Berhenti belajar buta. <br className="hidden sm:block" />
+            Mulai belajar cerdas.
+          </>
+        }
+        subtitle="SORA mengekstrak PDF kuliahmu, menguji pemahaman dengan kuis diagnostik, dan memandumu menggunakan AI Tutor Sokratik. Fokus pada kelemahanmu, bukan yang sudah kamu ketahui."
+        primaryAction={{
+          label: "Mulai Sekarang Gratis",
+          onClick: () => router.push("/dashboard"),
         }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}
-        >
-          {/* Badge */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "6px 14px",
-              borderRadius: 999,
-              background: "#F7F6F3",
-              border: "1px solid #E9E9E7",
-              fontSize: 12,
-              fontWeight: 500,
-              color: "#787774",
-            }}
-          >
-            <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#191919" }} />
-            Sistem Belajar Cerdas
-          </div>
+        secondaryAction={{
+          label: "Pelajari Lebih Lanjut",
+          onClick: () => {
+             document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
+          },
+        }}
+        disclaimer="Sistem Belajar Cerdas v2.0 • Gratis selamanya untuk mahasiswa."
+        socialProof={{
+          avatars: [
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&q=80",
+            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&q=80",
+            "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=64&q=80",
+            "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=64&q=80",
+          ],
+          text: "Dipercaya oleh 10.000+ mahasiswa",
+        }}
+        programs={[
+          {
+            image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            category: "COMPUTER SCIENCE",
+            title: "Algoritma & Struktur Data",
+            onClick: () => router.push("/dashboard")
+          },
+          {
+            image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            category: "BUSINESS",
+            title: "Manajemen Pemasaran",
+            onClick: () => router.push("/dashboard")
+          },
+          {
+            image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            category: "ENGINEERING",
+            title: "Kalkulus Lanjut",
+            onClick: () => router.push("/dashboard")
+          },
+          {
+            image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            category: "HUMANITIES",
+            title: "Sosiologi Modern",
+            onClick: () => router.push("/dashboard")
+          },
+          {
+            image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            category: "MEDICAL",
+            title: "Anatomi Manusia",
+            onClick: () => router.push("/dashboard")
+          },
+        ]}
+      />
 
-          {/* Heading */}
-          <h1
-            style={{
-              fontSize: "clamp(36px, 6vw, 72px)",
-              fontWeight: 700,
-              color: "#191919",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-              maxWidth: 800,
-              margin: 0,
-            }}
-          >
-            Platform belajar adaptif bagi mahasiswa.
-          </h1>
-
-          {/* Subheading */}
-          <p
-            style={{
-              fontSize: "clamp(15px, 2vw, 20px)",
-              color: "#787774",
-              maxWidth: 560,
-              fontWeight: 300,
-              margin: 0,
-              lineHeight: 1.6,
-            }}
-          >
-            SORA mengekstrak materi kuliah, memetakan konsep kelemahan, dan memberikan bimbingan sokratik terarah.
+      {/* The Problem */}
+      <section className="py-24 sm:py-32 px-6 border-t border-[#E9E9E7] relative z-20 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-black mb-6 tracking-tight">
+            Masalah dengan cara belajar tradisional
+          </h2>
+          <p className="text-lg text-[#615D59] leading-relaxed max-w-2xl mx-auto mb-16">
+            Membaca PDF berulang kali hanya memberikan ilusi pemahaman. Saat ujian tiba, mahasiswa sering terjebak tidak tahu mana yang benar-benar dikuasai dan mana yang sebenarnya belum dipahami.
           </p>
-
-          {/* CTA */}
-          <div style={{ marginTop: 16 }}>
-            <Link
-              href="/dashboard"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "12px 24px",
-                borderRadius: 10,
-                background: "#191919",
-                color: "#FFFFFF",
-                fontWeight: 500,
-                fontSize: 15,
-                textDecoration: "none",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-                transition: "background 0.15s, box-shadow 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#333333";
-                e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.2)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "#191919";
-                e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
-              }}
-            >
-              <span>Mulai Sekarang</span>
-              <ArrowRight size={16} />
-            </Link>
+          
+          <div className="grid sm:grid-cols-2 gap-6 text-left">
+            <div className="p-8 rounded-xl bg-[#FEF2F2] border border-[#FEE2E2]">
+              <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mb-4 text-red-600 font-bold text-xl">✕</div>
+              <h3 className="font-bold text-black text-lg mb-2">Belajar Pasif</h3>
+              <p className="text-[#615D59] text-sm leading-relaxed">Membaca ulang catatan tanpa menguji pemahaman tidak membangun ingatan jangka panjang.</p>
+            </div>
+            <div className="p-8 rounded-xl bg-[#F0FDF4] border border-[#DCFCE7]">
+              <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mb-4 text-green-600 font-bold text-xl">✓</div>
+              <h3 className="font-bold text-black text-lg mb-2">Active Recall (Cara SORA)</h3>
+              <p className="text-[#615D59] text-sm leading-relaxed">Menguji diri sendiri secara konstan untuk memaksa otak mengingat dan memahami konsep secara mendalam.</p>
+            </div>
           </div>
-        </motion.div>
-
-        {/* Marquee */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          style={{
-            width: "100vw",
-            overflow: "hidden",
-            background: "#F7F6F3",
-            borderTop: "1px solid #E9E9E7",
-            borderBottom: "1px solid #E9E9E7",
-            padding: "14px 0",
-            marginTop: 80,
-            position: "relative",
-            left: "50%",
-            right: "50%",
-            marginLeft: "-50vw",
-            marginRight: "-50vw",
-          }}
-        >
-          <motion.div
-            animate={{ x: [0, -1200] }}
-            transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
-            style={{ display: "flex", alignItems: "center", gap: 48, paddingLeft: 24, whiteSpace: "nowrap" }}
-          >
-            {[...features, ...features, ...features, ...features].map((feature, idx) => (
-              <div key={idx} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#787774" }} />
-                <span style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#191919" }}>
-                  {feature}
-                </span>
-              </div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Feature Cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: 24,
-            marginTop: 80,
-            width: "100%",
-            textAlign: "left",
-          }}
-        >
-          {featureCards.map((card, idx) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + idx * 0.1 }}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 12,
-                padding: 24,
-                borderRadius: 16,
-                border: "1px solid #E9E9E7",
-                background: "#FBFBFA",
-              }}
-            >
-              <div
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 10,
-                  background: "#F7F6F3",
-                  border: "1px solid #E9E9E7",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <card.icon size={20} color="#191919" />
-              </div>
-              <h3 style={{ fontWeight: 600, color: "#191919", fontSize: 17, margin: 0 }}>{card.title}</h3>
-              <p style={{ fontSize: 13, color: "#787774", margin: 0, lineHeight: 1.6 }}>{card.desc}</p>
-            </motion.div>
-          ))}
         </div>
-      </main>
+      </section>
+
+      {/* How It Works (Adaptive Loop) */}
+      <section id="how-it-works" className="py-24 sm:py-32 bg-[#F7F7F5] px-6 border-y border-[#E9E9E7] relative z-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4 tracking-tight">
+              Siklus Belajar Adaptif SORA
+            </h2>
+            <p className="text-[#615D59] text-lg max-w-2xl mx-auto">
+              Bukan sekadar chatbot. SORA menciptakan alur belajar tertutup yang terus memonitor dan memperbaiki pemahamanmu.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {steps.map((step, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: idx * 0.15 }}
+                className="relative p-8 bg-white border border-[#E9E9E7] rounded-xl hover:shadow-lg transition-shadow duration-300 group"
+              >
+                <div className="absolute top-8 right-8 text-6xl font-bold text-[#F7F7F5] z-0 pointer-events-none group-hover:-translate-y-2 group-hover:scale-110 transition-transform duration-300">
+                  {idx + 1}
+                </div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 bg-[#F6F5F4] rounded-xl flex items-center justify-center mb-6">
+                    <step.icon size={24} className="text-[#2383E2]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-black mb-3">{step.title}</h3>
+                  <p className="text-[#615D59] text-sm leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Grid */}
+      <section id="features" className="py-24 sm:py-32 px-6 relative z-20 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-16 text-center sm:text-left">
+            <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4 tracking-tight">
+              Dibangun untuk efisiensi.
+            </h2>
+            <p className="text-[#615D59] text-lg">
+              Semua alat yang Anda butuhkan untuk menguasai materi, dalam satu platform.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="p-8 rounded-xl bg-[#F7F7F5] border border-[#E9E9E7] hover:border-[#2383E2]/30 hover:bg-white transition-all cursor-default"
+              >
+                <div className="w-10 h-10 bg-white shadow-sm border border-[#E9E9E7] text-[#2383E2] rounded-lg flex items-center justify-center mb-6">
+                  <feature.icon size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-black mb-2">{feature.title}</h3>
+                <p className="text-[#615D59] text-sm leading-relaxed">
+                  {feature.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 sm:py-32 bg-[#151515] text-white px-6 relative z-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight text-white"
+          >
+            Siap mengubah cara belajarmu?
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-[#A1A09F] mb-10 max-w-2xl mx-auto"
+          >
+            Bergabunglah dengan sistem belajar adaptif SORA hari ini. Mulai ekstraksi materi PDF kamu dalam hitungan detik.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link 
+              href="/dashboard"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] bg-[#2383E2] text-white font-semibold text-lg hover:bg-[#1B6AC0] transition-colors shadow-lg active:scale-95"
+            >
+              Mulai Sekarang Gratis
+              <ChevronRight size={20} />
+            </Link>
+            <p className="text-[#787774] text-xs mt-4">
+              Tidak perlu kartu kredit. Langsung masuk menggunakan email.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer
-        style={{
-          borderTop: "1px solid #E9E9E7",
-          padding: "24px",
-          textAlign: "center",
-          fontSize: 12,
-          color: "#9B9A97",
-        }}
-      >
-        SORA — AI Learning Companion
+      <footer className="border-t border-[#E9E9E7] py-12 px-6 bg-white relative z-20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-[3px] bg-[#37352F] text-white font-bold text-[10px] flex items-center justify-center">
+              S
+            </div>
+            <span className="font-bold text-sm text-black">SORA AI</span>
+          </div>
+          <div className="text-[#615D59] text-sm">
+            © 2026 Brian Dicky Vanka Andaraneva. All rights reserved.
+          </div>
+        </div>
       </footer>
     </div>
   );
