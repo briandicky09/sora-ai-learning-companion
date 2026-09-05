@@ -376,3 +376,74 @@ body.view-landing main#main-content {
 .animate-scaleUp {
   animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* =========================================================
+ * SIDEBAR COLLAPSE STATE
+ * ========================================================= */
+body.sidebar-collapsed #desktop-sidebar {
+  width: 4rem !important; /* w-16 */
+  align-items: center;
+}
+
+body.sidebar-collapsed #desktop-sidebar #btn-account-menu {
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+body.sidebar-collapsed #desktop-sidebar #sidebar-user-name,
+body.sidebar-collapsed #desktop-sidebar #sidebar-user-sub,
+body.sidebar-collapsed #desktop-sidebar #btn-account-menu > span.material-symbols-outlined {
+  display: none;
+}
+
+body.sidebar-collapsed #desktop-sidebar button[onclick="window.soraApp?.openQuickSearch()"] span:not(.material-symbols-outlined),
+body.sidebar-collapsed #desktop-sidebar button[onclick="window.soraApp?.openQuickSearch()"] kbd {
+  display: none;
+}
+
+body.sidebar-collapsed #desktop-sidebar button[onclick="window.soraApp?.openQuickSearch()"] {
+  justify-content: center;
+}
+
+body.sidebar-collapsed #desktop-sidebar .tracking-wider {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body.sidebar-collapsed #desktop-sidebar .desktop-nav-item {
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+body.sidebar-collapsed #desktop-sidebar .desktop-nav-item span.truncate {
+  display: none;
+}
+
+body.sidebar-collapsed #desktop-sidebar .mt-auto a {
+  justify-content: center;
+}
+
+body.sidebar-collapsed #desktop-sidebar .mt-auto a span:not(.material-symbols-outlined) {
+  display: none;
+}
+
+body.sidebar-collapsed #desktop-sidebar .mt-auto div.flex.items-center.justify-between {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body.sidebar-collapsed #btn-collapse-sidebar {
+  opacity: 1 !important;
+}
+
+body.sidebar-collapsed #collapse-icon {
+  transform: rotate(180deg);
+}
