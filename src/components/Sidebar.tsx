@@ -74,23 +74,17 @@ export function Sidebar() {
           }
         >
           <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0 }}>
-            <div
+            <img
+              src="/logo-nalar.png"
+              alt="Nalar"
               style={{
-                width: 28,
-                height: 28,
-                borderRadius: "50%",
-                background: "#E9E9E7",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 11,
-                fontWeight: 600,
-                color: "#191919",
+                width: 72,
+                height: 72,
+                objectFit: "contain",
                 flexShrink: 0,
+                margin: "-22px -10px",
               }}
-            >
-              S
-            </div>
+            />
             <div style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
               <span
                 style={{
@@ -322,7 +316,7 @@ export function Sidebar() {
             color: "#9B9A97",
           }}
         >
-          <span>SORA v2.0</span>
+          <span>Nalar v2.0</span>
           <span style={{ fontWeight: 500, color: "#191919" }}>● Tersinkron</span>
         </div>
       </div>

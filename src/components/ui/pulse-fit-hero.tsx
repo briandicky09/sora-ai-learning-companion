@@ -43,7 +43,7 @@ interface PulseFitHeroProps {
 }
 
 export function PulseFitHero({
-  logo = "SORA",
+  logo = "Nalar",
   navigation = [
     { label: "Fitur" },
     { label: "Materi Kuliah", hasDropdown: true },

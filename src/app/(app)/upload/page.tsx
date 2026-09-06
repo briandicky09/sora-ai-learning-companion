@@ -19,7 +19,7 @@ export default function UploadPage() {
           Materi Kuliah
         </h1>
         <p style={{ fontSize: 14, color: "#787774", margin: 0 }}>
-          Unggah dokumen PDF untuk diekstrak topik dan strukturnya oleh SORA.
+          Unggah dokumen PDF untuk diekstrak topik dan strukturnya oleh Nalar.
         </p>
       </div>
 

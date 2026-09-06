@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Share, Search, Menu } from "lucide-react";
+import { Share, Search, Menu, X, Home, FileText, Bot, Network, HelpCircle, Activity, Lightbulb, Clock } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const pageTitles: Record<string, string> = {
   "/dashboard": "Beranda",
@@ -16,9 +17,21 @@ const pageTitles: Record<string, string> = {
   "/exam": "Mode Ujian",
 };
 
+const navItems = [
+  { href: "/dashboard", label: "Beranda", icon: Home },
+  { href: "/upload", label: "Materi Kuliah", icon: FileText },
+  { href: "/ai-tutor", label: "AI Tutor Sokratik", icon: Bot },
+  { href: "/topic-map", label: "Peta Konsep", icon: Network },
+  { href: "/quiz", label: "Kuis Diagnostik", icon: HelpCircle },
+  { href: "/progress", label: "Knowledge Profile", icon: Activity },
+  { href: "/recommendations", label: "Rekomendasi Terarah", icon: Lightbulb },
+  { href: "/exam", label: "Mode Ujian", icon: Clock },
+];
+
 export function Header() {
   const pathname = usePathname();
-  const currentTitle = pageTitles[pathname] || "SORA";
+  const currentTitle = pageTitles[pathname] || "Nalar";
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <>
@@ -45,7 +58,7 @@ export function Header() {
             onMouseEnter={(e) => (e.currentTarget.style.color = "#191919")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "#787774")}
           >
-            SORA
+            Nalar
           </Link>
           <span>/</span>
           <span style={{ fontWeight: 500, color: "#191919" }}>{currentTitle}</span>
@@ -77,7 +90,7 @@ export function Header() {
 
       {/* Mobile Header */}
       <header
-        className="md:hidden"
+        className="flex md:hidden items-center justify-between px-4"
         style={{
           position: "sticky",
           top: 0,
@@ -87,35 +100,20 @@ export function Header() {
           background: "rgba(255,255,255,0.95)",
           backdropFilter: "blur(8px)",
           borderBottom: "1px solid #E9E9E7",
-          padding: "0 16px",
           height: 48,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
         }}
       >
         <Link
           href="/dashboard"
           style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", cursor: "pointer" }}
         >
-          <div
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: 6,
-              background: "#191919",
-              color: "#FFFFFF",
-              fontWeight: 700,
-              fontSize: 11,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            S
-          </div>
+          <img
+            src="/logo-nalar.png"
+            alt="Nalar"
+            style={{ width: 72, height: 72, objectFit: "contain", margin: "-22px -10px" }}
+          />
           <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: "-0.02em", color: "#191919" }}>
-            SORA
+            Nalar
           </span>
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -140,6 +138,7 @@ export function Header() {
           </button>
           <button
             type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             style={{
               width: 32,
               height: 32,
@@ -155,10 +154,61 @@ export function Header() {
             onMouseEnter={(e) => (e.currentTarget.style.background = "#F1F1EF")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
           >
-            <Menu size={20} />
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            style={{
+              position: "fixed",
+              top: 48,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "#FFFFFF",
+              zIndex: 40,
+              padding: 16,
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+              overflowY: "auto"
+            }}
+          >
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    padding: "12px 16px",
+                    borderRadius: 8,
+                    fontSize: 14,
+                    fontWeight: 500,
+                    textDecoration: "none",
+                    color: isActive ? "#191919" : "#44433E",
+                    background: isActive ? "rgba(55,53,47,0.08)" : "transparent",
+                  }}
+                >
+                  <item.icon size={18} />
+                  <span>{item.label}</span>
+                </Link>
+              )
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -27,13 +27,12 @@ export default function ProgressPage() {
       {/* Summary Stats */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
         {[
-          { label: "Rata-rata Penguasaan", value: "48%", icon: Activity, color: "#191919" },
-          { label: "Topik Dikuasai", value: "1", icon: Trophy, color: "#D97706" },
-          { label: "Target Belajar", value: "3 Topik", icon: Target, color: "#059669" }
+          { label: "Rata-rata Penguasaan", value: "48%" },
+          { label: "Topik Dikuasai", value: "1" },
+          { label: "Target Belajar", value: "3 Topik" }
         ].map((stat, idx) => (
           <div key={idx} style={{ padding: 20, borderRadius: 12, border: "1px solid #E9E9E7", background: "#FBFBFA", display: "flex", flexDirection: "column", gap: 12 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <stat.icon size={18} color={stat.color} />
               <span style={{ fontSize: 12, fontWeight: 600, color: "#787774", textTransform: "uppercase", letterSpacing: "0.05em" }}>{stat.label}</span>
             </div>
             <div style={{ fontSize: 32, fontWeight: 700, color: "#191919" }}>{stat.value}</div>

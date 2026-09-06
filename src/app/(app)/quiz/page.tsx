@@ -15,7 +15,7 @@ export default function QuizPage() {
           Kuis Diagnostik
         </h1>
         <p style={{ fontSize: 14, color: "#787774", margin: 0 }}>
-          Evaluasi pemahamanmu. SORA akan mengidentifikasi kelemahan konsep secara otomatis.
+          Evaluasi pemahamanmu. Nalar akan mengidentifikasi kelemahan konsep secara otomatis.
         </p>
       </div>
 
@@ -58,7 +58,7 @@ export default function QuizPage() {
             <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
               <h2 style={{ fontSize: 20, fontWeight: 600, color: "#191919", margin: 0 }}>Masih Perlu Ditingkatkan</h2>
               <p style={{ fontSize: 14, color: "#787774", margin: 0, lineHeight: 1.6 }}>
-                Kamu menjawab 6 dari 10 pertanyaan dengan benar. Analisis SORA menunjukkan bahwa kamu sudah paham teori dasar, namun kesulitan pada penerapan konsep *Encapsulation*.
+                Kamu menjawab 6 dari 10 pertanyaan dengan benar. Analisis Nalar menunjukkan bahwa kamu sudah paham teori dasar, namun kesulitan pada penerapan konsep *Encapsulation*.
               </p>
             </div>
           </div>
