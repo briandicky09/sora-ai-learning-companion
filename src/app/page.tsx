@@ -48,7 +48,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-white text-[#37352F] font-sans overflow-x-hidden selection:bg-[#2383E2]/20 selection:text-[#2383E2]">
-      
+
       {/* New Hero Section */}
       <PulseFitHero
         logo={
@@ -81,7 +81,7 @@ export default function LandingPage() {
         secondaryAction={{
           label: "Pelajari Lebih Lanjut",
           onClick: () => {
-             document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
+            document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
           },
         }}
         disclaimer="Sistem Belajar Cerdas v2.0 • Gratis selamanya untuk mahasiswa."
@@ -137,7 +137,7 @@ export default function LandingPage() {
           <p className="text-lg text-[#615D59] leading-relaxed max-w-2xl mx-auto mb-16">
             Membaca PDF berulang kali hanya memberikan ilusi pemahaman. Saat ujian tiba, mahasiswa sering terjebak tidak tahu mana yang benar-benar dikuasai dan mana yang sebenarnya belum dipahami.
           </p>
-          
+
           <div className="grid sm:grid-cols-2 gap-6 text-left">
             <div className="p-8 rounded-xl bg-[#FEF2F2] border border-[#FEE2E2]">
               <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mb-4 text-red-600 font-bold text-xl">✕</div>
@@ -167,7 +167,7 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {steps.map((step, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -231,7 +231,7 @@ export default function LandingPage() {
       {/* Final CTA */}
       <section className="py-24 sm:py-32 bg-[#151515] text-white px-6 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -239,7 +239,7 @@ export default function LandingPage() {
           >
             Siap mengubah cara belajarmu?
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -254,7 +254,7 @@ export default function LandingPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <Link 
+            <Link
               href="/dashboard"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-[3px] bg-[#2383E2] text-white font-semibold text-lg hover:bg-[#1B6AC0] transition-colors shadow-lg active:scale-95"
             >
